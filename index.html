@@ -18,7 +18,7 @@
                   </div>
                   <div class="form-group" id="effect">
                       
-                    <div class="form-group" name="takeNote" contenteditable="true" style="border: 2px solid #E7DDDD">
+                    <div class="form-group" id="addInput" name="takeNote" contenteditable="true" style="border: 2px solid #E7DDDD">
                       <input type="text" class="form-control" id="takeNote" placeholder="Take a Note...">
                     </div>
                 
@@ -117,15 +117,18 @@ $("#takeNote").keypress(function(){
       index = index + 1;
       var itemTxt = $("#takeNote").val(); 
    console.log("Item:"+itemTxt);
+  //  $("#takeNote").append("")
    var value = $("#takeNote").parents().html(); 
   //  console.log(value);
-      $("#takeNote").append("<div class=\"input-group mb-3\">\n"+
+      $("#addInput").append("<div class=\"input-group mb-3\">\n"+
                                 "<div class=\"input-group-prepend\">\n"+
-                                  "<div class=\"input-group-text\">\n"+
-                                      "<input type=\"checkbox\" aria-label=\"CheckBox for text area\" id=\"cBoxID"+index+"\">\n"+
+                                  "<div class=\"input-group-text\ id=\"hoverList\">\n"+
+                                      "&nbsp;&nbsp;<i class='fas fa-ellipsis-v' id='listIcon'></i>&nbsp;&nbsp;<input type=\"checkbox\" aria-label=\"CheckBox for text area\" id=\"cBoxID"+index+"\">\n"+
                                   "</div>\n"+
-                                "</div>");
-    
+                                "</div>\n"+
+                                "<input value='"+itemTxt+"' type=\"text\" class=\"form-control\" aria-label=\"Text Input\" id=\"cBoxID"+index+"\">\n"+
+                            "</div>");
+      $("#takeNote").val("");
     }
 
 
