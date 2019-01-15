@@ -74,6 +74,11 @@ body { font-family: sans-serif; }
 #colorImg{
     font-size: 30px;
     visibility: hidden;
+    &:hover{
+      #selectColor{
+        visibility: visible;
+      }
+    }
 }
 #txtTitle{
     visibility: hidden;
@@ -86,4 +91,7 @@ body { font-family: sans-serif; }
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
+}
+#selectColor{
+  visibility: hidden;
 }
