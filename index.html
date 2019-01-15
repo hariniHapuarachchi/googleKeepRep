@@ -20,6 +20,7 @@
                       
                     <div class="form-group" id="addInput" name="takeNote" contenteditable="true" style="border: 2px solid #E7DDDD">
                       <input type="text" class="form-control" id="takeNote" placeholder="Take a Note...">
+                     
                     </div>
                 
                     <i class="fas fa-palette" id="colorImg" title="Change Color">
@@ -95,6 +96,7 @@ $grid.packery( 'bindUIDraggableEvents', $items );
 $(document).ready(function(){
     $( "#effect" ).hide(3);
     $("#takeNote").css("color","#C9C2C2");
+    
 });
 
     $("#takeNote").click(function(event) {
@@ -109,27 +111,40 @@ $(document).ready(function(){
         
     });
  
+    $( function() {
+    $( "#addInput" ).sortable();
+    $( "#addInput" ).disableSelection();
+} );
+
 $("#takeNote").keypress(function(){
     var index = 0;
-   
+    
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
+      
+    // if(e.which == 13) {
       index = index + 1;
       var itemTxt = $("#takeNote").val(); 
-   console.log("Item:"+itemTxt);
-  //  $("#takeNote").append("")
-   var value = $("#takeNote").parents().html(); 
-  //  console.log(value);
-      $("#addInput").append("<div class=\"input-group mb-3\">\n"+
-                                "<div class=\"input-group-prepend\">\n"+
-                                  "<div class=\"input-group-text\ id=\"hoverList\">\n"+
-                                      "&nbsp;&nbsp;<i class='fas fa-ellipsis-v' id='listIcon'></i>&nbsp;&nbsp;<input type=\"checkbox\" aria-label=\"CheckBox for text area\" id=\"cBoxID"+index+"\">\n"+
-                                  "</div>\n"+
-                                "</div>\n"+
-                                "<input value='"+itemTxt+"' type=\"text\" class=\"form-control\" aria-label=\"Text Input\" id=\"cBoxID"+index+"\">\n"+
-                            "</div>");
-      $("#takeNote").val("");
+      console.log("Item:"+itemTxt);
+  
+      var value = $("#takeNote").parents().html(); 
+  
+        $("#addInput").append(
+            "<div class=\"input-group mb-3\" id='ad'>\n" +
+            "                        <div class=\"input-group-prepend\">\n" +
+            "                            <div class=\"input-group-text\" id='oneInputGroup'>&nbsp;&nbsp;<i class=\"fas fa-grip-vertical\" id='sideIcon'></i>\n" +
+            "                                &nbsp;&nbsp;<input type=\"checkbox\" aria-label=\"Checkbox for following text input\" id=\"chekBoxID"+index+"\">\n" +
+            "                            </div>\n" +
+            "                        </div>\n" +
+            "                        <input value='"+itemTxt+"' type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"cekBoxTID"+index+"\">\n" +
+            "                    </div>");
+
+        $("#takeNote").val("");
+        
+       
     }
+
+    // }
 
 
 });
@@ -222,6 +237,8 @@ $("#colseBtn").click(function(){
     $("#colorImg").css("visibility","hidden");
         $("#colseBtn").css("visibility","hidden");
 });
+
+
 </script>
 </body>
 </html>
