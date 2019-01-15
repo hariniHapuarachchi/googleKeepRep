@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+        <div class="container">
+                <form>
+                  <div class="form-group" id="effect">
+                    <input type="text" class="form-control" id="txtTitle" placeholder="Tittle" name="txtTitle">
+                  </div>
+                  <div class="form-group" id="effect">
+                      
+                    <div id="takeNote"  name="takeNote" contenteditable="true" style="border: 2px solid #E7DDDD"></div>
+                
+                    <i class="fas fa-palette" id="colorImg" title="Change Color"></i>
+                    <div>
+                    <div style="text-align:center">
+                      <span class="dot" style="background-color: #E9967A"></span>
+                      <span class="dot" style="background-color: #FFEFD5"></span>
+                      <span class="dot" style="background-color: #BDB76B"></span>
+                      <span class="dot" style="background-color: #9ACD32"></span>
+                    </div>
+
+                    <div style="text-align:center">
+                      <span class="dot" style="background-color: #3CB371"></span>
+                      <span class="dot" style="background-color: #98FB98"></span>
+                      <span class="dot" style="background-color: #90EE90"></span>
+                      <span class="dot" style="background-color: #8FBC8F"></span>
+                    </div>
+
+                    <div style="text-align:center">
+                      <span class="dot" style="background-color: #E9967A"></span>
+                      <span class="dot" style="background-color: #FFEFD5"></span>
+                      <span class="dot" style="background-color: #BDB76B"></span>
+                      <span class="dot" style="background-color: #9ACD32"></span>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-default" id="colseBtn">Close</button>
+                </div>
+                  
+                </form>
+              </div>    
+        <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+<div class="container">
+      </div>
+        <div class="grid">
+          <div class="grid-item grid-item--width2"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--width2 grid-item--height2"></div>
+          <div class="grid-item grid-item--width2"></div>
+          <div class="grid-item grid-item--width2"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--width2"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--width2 grid-item--height2"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item grid-item--width2"></div>
+          <div class="grid-item grid-item--height2"></div>
+          <div class="grid-item"></div>
+        </div>
+        
+    <!-- <script src="https://unpkg.com/packery@2/dist/packery.pkgd.js"></script> -->
+<script src="js/jquery/jquery.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="https://unpkg.com/packery@2/dist/packery.pkgd.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+ var $grid = $('.grid').packery({
+  itemSelector: '.grid-item',
+  // columnWidth helps with drop positioning
+  columnWidth: 100
+});
+
+// make all items draggable
+var $items = $grid.find('.grid-item').draggable();
+// bind drag events to Packery
+$grid.packery( 'bindUIDraggableEvents', $items );
+
+$(document).ready(function(){
+    $( "#effect" ).hide(3);
+    $("#takeNote").text("Take a Note....");
+    $("#takeNote").css("color","#C9C2C2");
+});
+
+    $("#takeNote").click(function(event) {
+      $("#takeNote").text("");
+        $("#takeNote").css("color","black");
+        $("#txtTitle").css("visibility","visible");
+        $("#takeNote").css("visibility","visible");
+        $("#colorImg").css("visibility","visible");
+        $("#colseBtn").css("visibility","visible");
+        $( "#effect" ).show(500);
+        
+    });
+ 
+    $("#takeNote").keypress(function(){
+
+     
+     var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      
+    }
+
+
+    });
+  
+$("#colorImg").tooltip();
+
+
+</script>
+</body>
+</html>
