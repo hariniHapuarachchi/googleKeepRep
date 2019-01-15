@@ -65,11 +65,13 @@ body {
   float: right;
   padding: 10px;
   visibility: hidden;
+  margin-top: 7px;
 }
 
 #colorImg {
   font-size: 30px;
   visibility: hidden;
+  margin-top: 7px;
 }
 #colorImg:hover #selectColor {
   visibility: visible;

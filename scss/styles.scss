@@ -64,6 +64,7 @@ body { font-family: sans-serif; }
     float: right;
   padding: 10px;
   visibility: hidden;
+  margin-top:7px;
 }
 // #colseBtn:focus{
 //   // outline: none;
@@ -74,6 +75,7 @@ body { font-family: sans-serif; }
 #colorImg{
     font-size: 30px;
     visibility: hidden;
+    margin-top:7px;
     &:hover{
       #selectColor{
         visibility: visible;

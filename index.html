@@ -11,15 +11,17 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-        <div class="container">
-                <form>
+        <div class="container" id="formStructure">
+               <div class="row">
                   <div class="form-group" id="effect">
                     <input type="text" class="form-control" id="txtTitle" placeholder="Tittle" name="txtTitle">
                   </div>
-                  <div class="form-group" id="effect">
+                </div>
+                  <div class="row" id="effect">
                       
                     <div id="takeNote"  name="takeNote" contenteditable="true" style="border: 2px solid #E7DDDD"></div>
-                
+                  </div>
+                  <div class="row">
                     <i class="fas fa-palette" id="colorImg" title="Change Color">
                       <div id="selectColor" style="background-color:#E6E6FA">
                       <div style="text-align:center">
@@ -47,7 +49,6 @@
                   <button type="button" class="btn btn-default" id="colseBtn">Close</button>
                 </div>
                   
-                </form>
               </div>    
         <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
 <div class="container">
