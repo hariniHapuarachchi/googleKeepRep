@@ -71,6 +71,9 @@ body {
   font-size: 30px;
   visibility: hidden;
 }
+#colorImg:hover #selectColor {
+  visibility: visible;
+}
 
 #txtTitle {
   visibility: hidden;
@@ -82,6 +85,10 @@ body {
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
+}
+
+#selectColor {
+  visibility: hidden;
 }
 
 /*# sourceMappingURL=styles.css.map */
