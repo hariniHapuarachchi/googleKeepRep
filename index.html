@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-        <div class="container">
-                <form>
+        <div class="container" >
+                <form id="formStuc">
                   <div class="form-group" id="effect">
                     <input type="text" class="form-control" id="txtTitle" placeholder="Tittle" name="txtTitle">
                   </div>
@@ -107,20 +107,103 @@ $(document).ready(function(){
         
     });
  
-    $("#takeNote").keypress(function(){
+    // $("#takeNote").keypress(function(){
 
      
-     var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
+    //  var keycode = (event.keyCode ? event.keyCode : event.which);
+    // if(keycode == '13'){
       
-    }
+    // }
 
 
-    });
+    // });
   
 $("#colorImg").tooltip();
 
+$("#dot1").click(function(){
+  $("#txtTitle").css("background-color","#E9967A");
+  $("#takeNote").css("background-color","#E9967A");
+  $("#colseBtn").css("background-color","#E9967A");
+  $("#formStuc").css("background-color","#E9967A");
+});
+$("#dot2").click(function(){
+  $("#txtTitle").css("background-color","#FFEFD5");
+  $("#takeNote").css("background-color","#FFEFD5");
+  $("#colseBtn").css("background-color","#FFEFD5");
+  $("#formStuc").css("background-color","#FFEFD5");
+});
+$("#dot3").click(function(){
+  $("#txtTitle").css("background-color","#BDB76B");
+  $("#takeNote").css("background-color","#BDB76B");
+  $("#colseBtn").css("background-color","#BDB76B");
+  $("#formStuc").css("background-color","#BDB76B");
+});
+$("#dot4").click(function(){
+  $("#txtTitle").css("background-color","#9ACD32");
+  $("#takeNote").css("background-color","#9ACD32");
+  $("#colseBtn").css("background-color","#9ACD32");
+  $("#formStuc").css("background-color","#9ACD32");
+});
+$("#dot5").click(function(){
+  $("#txtTitle").css("background-color","#3CB371");
+  $("#takeNote").css("background-color","#3CB371");
+  $("#colseBtn").css("backgrE9967Ar","#3CB371");
+  $("#formStuc").css("backgrE9967Ar","#3CB371");
+});
+$("#dot6").click(function(){E9967A
+  $("#txtTitle").css("background-color","#98FB98");
+  $("#takeNote").css("background-color","#98FB98");
+  $("#colseBtn").css("background-color","#98FB98");
+  $("#formStuc").css("background-color","#98FB98");
+});
+$("#dot7").click(function(){
+  $("#txtTitle").css("background-color","#90EE90");
+  $("#takeNote").css("background-color","#90EE90");
+  $("#colseBtn").css("background-color","#90EE90");
+  $("#formStuc").css("background-color","#90EE90");
+});
+$("#dot8").click(function(){
+  $("#txtTitle").css("background-color","#8FBC8F");
+  $("#takeNote").css("background-color","#8FBC8F");
+  $("#colseBtn").css("background-color","#8FBC8F");
+  $("#formStuc").css("background-color","#8FBC8F");
+});
+$("#dot9").click(function(){
+  $("#txtTitle").css("background-color","#AFEEEE");
+  $("#takeNote").css("background-color","#AFEEEE");
+  $("#colseBtn").css("background-color","#AFEEEE");
+  $("#formStuc").css("background-color","#AFEEEE");
+});
+$("#dot10").click(function(){
+  $("#txtTitle").css("background-color","#5F9EA0");
+  $("#takeNote").css("background-color","#5F9EA0");
+  $("#colseBtn").css("background-color","#5F9EA0");
+  $("#formStuc").css("background-color","#5F9EA0");
+});
+$("#dot11").click(function(){
+  $("#txtTitle").css("background-color","#D8BFD8");
+  $("#takeNote").css("background-color","#D8BFD8");
+  $("#colseBtn").css("background-color","#D8BFD8");
+  $("#formStuc").css("background-color","#D8BFD8");
+});
+$("#dot12").click(function(){
+  $("#txtTitle").css("background-color","#9370DB");
+  $("#takeNote").css("background-color","#9370DB");
+  $("#colseBtn").css("background-color","#9370DB");
+  $("#formStuc").css("background-color","#9370DB");
+});
 
+// $("body").click(function(){
+//   $( "#effect" ).hide(3);
+//     $("#takeNote").text("Take a Note....");
+//     $("#takeNote").css("color","#C9C2C2");
+// });
+
+$("#colseBtn").click(function(){
+  $( "#effect" ).hide(3);
+    $("#takeNote").text("Take a Note....");
+    $("#takeNote").css("color","#C9C2C2");
+});
 </script>
 </body>
 </html>
