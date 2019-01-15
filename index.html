@@ -18,7 +18,9 @@
                   </div>
                   <div class="form-group" id="effect">
                       
-                    <div id="takeNote"  name="takeNote" contenteditable="true" style="border: 2px solid #E7DDDD"></div>
+                    <div class="form-group" name="takeNote" contenteditable="true" style="border: 2px solid #E7DDDD">
+                      <input type="text" class="form-control" id="takeNote" placeholder="Take a Note...">
+                    </div>
                 
                     <i class="fas fa-palette" id="colorImg" title="Change Color">
                       <div id="selectColor" style="background-color:#E6E6FA">
@@ -92,31 +94,42 @@ $grid.packery( 'bindUIDraggableEvents', $items );
 
 $(document).ready(function(){
     $( "#effect" ).hide(3);
-    $("#takeNote").text("Take a Note....");
     $("#takeNote").css("color","#C9C2C2");
 });
 
     $("#takeNote").click(function(event) {
-      $("#takeNote").text("");
         $("#takeNote").css("color","black");
         $("#txtTitle").css("visibility","visible");
         $("#takeNote").css("visibility","visible");
         $("#colorImg").css("visibility","visible");
         $("#colseBtn").css("visibility","visible");
         $( "#effect" ).show(500);
+
+       
         
     });
  
-    // $("#takeNote").keypress(function(){
+$("#takeNote").keypress(function(){
+    var index = 0;
+   
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      index = index + 1;
+      var itemTxt = $("#takeNote").val(); 
+   console.log("Item:"+itemTxt);
+   var value = $("#takeNote").parents().html(); 
+  //  console.log(value);
+      $("#takeNote").append("<div class=\"input-group mb-3\">\n"+
+                                "<div class=\"input-group-prepend\">\n"+
+                                  "<div class=\"input-group-text\">\n"+
+                                      "<input type=\"checkbox\" aria-label=\"CheckBox for text area\" id=\"cBoxID"+index+"\">\n"+
+                                  "</div>\n"+
+                                "</div>");
+    
+    }
 
-     
-    //  var keycode = (event.keyCode ? event.keyCode : event.which);
-    // if(keycode == '13'){
-      
-    // }
 
-
-    // });
+});
   
 $("#colorImg").tooltip();
 
@@ -203,6 +216,8 @@ $("#colseBtn").click(function(){
   $( "#effect" ).hide(3);
     $("#takeNote").text("Take a Note....");
     $("#takeNote").css("color","#C9C2C2");
+    $("#colorImg").css("visibility","hidden");
+        $("#colseBtn").css("visibility","hidden");
 });
 </script>
 </body>
