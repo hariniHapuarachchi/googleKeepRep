@@ -82,6 +82,33 @@
 <script src="https://unpkg.com/packery@2/dist/packery.pkgd.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
+// $('.append-button').on( 'click', function() {
+//   // create new item elements
+//   var $items = getItemElement().add( getItemElement() ).add( getItemElement() );
+//   // append elements to container
+//   $grid.append( $items )
+//     // add and lay out newly appended elements
+//     .packery( 'appended', $items );
+// });
+
+
+// make <div class="grid-item grid-item--width# grid-item--height#" />
+function getItemElement() {
+  var $item = $('<div class="grid-item"></div>');
+  // add width and height class
+  var wRand = Math.random();
+  var hRand = Math.random();
+  var widthClass = wRand > 0.85 ? 'grid-item--width3' : wRand > 0.7 ? 'grid-item--width2' : '';
+  var heightClass = hRand > 0.85 ? 'grid-item--height3' : hRand > 0.5 ? 'grid-item--height2' : '';
+  $item.addClass( widthClass ).addClass( heightClass );
+  return $item;
+}
+
+
+
+
+
+
  var $grid = $('.grid').packery({
   itemSelector: '.grid-item',
   // columnWidth helps with drop positioning
@@ -92,6 +119,13 @@
 var $items = $grid.find('.grid-item').draggable();
 // bind drag events to Packery
 $grid.packery( 'bindUIDraggableEvents', $items );
+
+$grid.on( 'click', '.grid-item', function( event ) {
+  // remove clicked element
+  $grid.packery( 'remove', event.currentTarget )
+    // shiftLayout remaining item elements
+    .packery('shiftLayout');
+});
 
 $(document).ready(function(){
     $( "#effect" ).hide(3);
@@ -230,12 +264,19 @@ $("#dot12").click(function(){
 //     $("#takeNote").css("color","#C9C2C2");
 // });
 
-$("#colseBtn").click(function(){
+$("#colseBtn").click('.grid-item',function(){
   $( "#effect" ).hide(3);
     $("#takeNote").text("Take a Note....");
     $("#takeNote").css("color","#C9C2C2");
     $("#colorImg").css("visibility","hidden");
         $("#colseBtn").css("visibility","hidden");
+   var t = $("#txtTitle").val();
+        var $items = getItemElement().add(t);
+  // append elements to container
+  $grid.append( $items )
+    // add and lay out newly appended elements
+    .packery( 'appended', $items );
+        
 });
 
 

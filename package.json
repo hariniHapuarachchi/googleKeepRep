@@ -1,0 +1,13 @@
+{
+  "name": "googlekeepproject",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "browser-sync --server --watch"
+  },
+  "author": "harini hapuarachchi <hariniupendrika@gnail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.26.3"
+  }
+}
