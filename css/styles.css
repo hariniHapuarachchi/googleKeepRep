@@ -73,6 +73,9 @@ body {
   visibility: hidden;
   margin-top: 7px;
 }
+#colorImg:hover {
+  cursor: move;
+}
 #colorImg:hover #selectColor {
   visibility: visible;
 }
