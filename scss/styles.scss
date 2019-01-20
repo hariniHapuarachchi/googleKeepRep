@@ -6,7 +6,7 @@ body { font-family: sans-serif; }
 /* ---- grid ---- */
 
 .grid {
-  background: #DDD;
+  background: white;
   max-width: 1200px;
 
 }
@@ -22,14 +22,17 @@ body { font-family: sans-serif; }
 
 .grid-item {
   float: left;
-  width: 100px;
-  height: 100px;
-  background: #C09;
+  width: 300px;
+  height: 300px;
+  // background: #C09;
   border: 2px solid hsla(0, 0%, 0%, 0.5);
 }
 
-.grid-item--width2 { width: 200px; }
-.grid-item--height2 { height: 200px; }
+.grid-item--width2 { width: 300px; }
+.grid-item--height2 { height: 300px; }
+
+.grid-item--width3 { width: 250px; }
+.grid-item--height3 { height: 300px; }
 
 .grid-item:hover {
   border-color: hsla(0, 0%, 100%, 0.5);
@@ -62,10 +65,18 @@ body { font-family: sans-serif; }
     // } 
 }
 #colseBtn{
-    float: right;
-  padding: 10px;
+  position: absolute;
+  right: 18px;
+  bottom: 20px;
+  width: 70px;
+  height: 30px;
+  font-size: 15px;
+  border-radius: 3.6px;
   visibility: hidden;
-  margin-top:7px;
+  cursor: pointer;
+    outline: none;
+  // margin-top:7px;
+  
 }
 // #colseBtn:focus{
 //   // outline: none;
@@ -109,3 +120,35 @@ body { font-family: sans-serif; }
 //   // }
 //   background-color: red;
 // }
+
+
+  form.create-note{
+    position: relative;
+    width: 480px;
+    margin: 15px auto;
+    // background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px #ccc;
+  }
+  form.create-note input,{
+    width: 100%;
+    border: none;
+    padding: 4px;
+    outline: none;
+    font-size: 1.6em;
+  }
+  // form.create-note button{
+  //   position: absolute;
+  //   right: 18px;
+  //   bottom: -18px;
+  //   background: #41b883;
+  //   color: #fff;
+  //   border: none;
+  //   border-radius: 50%;
+  //   width: 36px;
+  //   height: 36px;
+  //   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  //   cursor: pointer;
+  //   outline: none;
+  // }

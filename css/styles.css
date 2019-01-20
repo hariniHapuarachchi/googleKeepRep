@@ -8,7 +8,7 @@ body {
 
 /* ---- grid ---- */
 .grid {
-  background: #DDD;
+  background: white;
   max-width: 1200px;
 }
 
@@ -22,18 +22,25 @@ body {
 /* ---- .grid-item ---- */
 .grid-item {
   float: left;
-  width: 100px;
-  height: 100px;
-  background: #C09;
+  width: 300px;
+  height: 300px;
   border: 2px solid rgba(0, 0, 0, 0.5);
 }
 
 .grid-item--width2 {
-  width: 200px;
+  width: 300px;
 }
 
 .grid-item--height2 {
-  height: 200px;
+  height: 300px;
+}
+
+.grid-item--width3 {
+  width: 250px;
+}
+
+.grid-item--height3 {
+  height: 300px;
 }
 
 .grid-item:hover {
@@ -62,10 +69,16 @@ body {
 }
 
 #colseBtn {
-  float: right;
-  padding: 10px;
+  position: absolute;
+  right: 18px;
+  bottom: 20px;
+  width: 70px;
+  height: 30px;
+  font-size: 15px;
+  border-radius: 3.6px;
   visibility: hidden;
-  margin-top: 7px;
+  cursor: pointer;
+  outline: none;
 }
 
 #colorImg {
@@ -94,6 +107,23 @@ body {
 
 #selectColor {
   visibility: hidden;
+}
+
+form.create-note {
+  position: relative;
+  width: 480px;
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px #ccc;
+}
+
+form.create-note input {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.6em;
 }
 
 /*# sourceMappingURL=styles.css.map */

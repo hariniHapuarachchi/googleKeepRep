@@ -19,8 +19,8 @@
                   </div>
                   <div class="form-group" id="effect">
                       
-                    <div class="form-group" id="addInput" name="takeNote">
-                      <input type="text" class="form-control" id="takeNote" placeholder="Take a Note..." style="box-shadow:none">
+                    <div class="form-group" id="addInput" name="takeNote" contenteditable="true">
+                      <!-- <input type="text" class="form-control" id="takeNote" placeholder="Take a Note..." style="box-shadow:none"> -->
                      
                     </div>
                 
@@ -67,17 +67,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
   var row1 = 0;
-// $('.append-button').on( 'click', function() {
-//   // create new item elements
-//   var $items = getItemElement().add( getItemElement() ).add( getItemElement() );
-//   // append elements to container
-//   $grid.append( $items )
-//     // add and lay out newly appended elements
-//     .packery( 'appended', $items );
-// });
-
-
-// make <div class="grid-item grid-item--width# grid-item--height#" />
+  var i = 1;
 function getItemElement() {
   var $item = $('<div class="grid-item"></div>');
   // add width and height class
@@ -88,8 +78,6 @@ function getItemElement() {
   $item.addClass( widthClass ).addClass( heightClass );
   return $item;
 }
-
-
 
 
 
@@ -115,13 +103,26 @@ $grid.on( 'click', '.grid-item', function( event ) {
 $(document).ready(function(){
     $( "#effect" ).hide(3);
     $("#takeNote").css("color","#C9C2C2");
-    
+ 
 });
+console.log("LENGTH:"+$("#addInput").children().length);
+if($("#addInput").children().length == 0){
+      row1 = row1 + 1;
+      
+      $("#addInput").append(
+            "<div class=\"input-group mb-3\" id=\"ad"+row1+"\" value=\"ad"+row1+"\">\n" +
+            "                        <i class='fas fa-plus' id='plusSign'></i><input type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"takeNote"+row1+"\"><i class='fas fa-times' id='cancelRow'></i>\n" +
+            "                    </div>");
+    }
+   
+    var ID = $("#addInput").children().first().attr('id');
+console.log(ID);
 
-    $("#takeNote").click(function(event) {
-        $("#takeNote").css("color","black");
+  // $(document).on('click','#takeNote',function(){
+    $("#"+ID).click(function(){
+      $("#"+ID).css("color","black");
         $("#txtTitle").css("visibility","visible");
-        $("#takeNote").css("visibility","visible");
+        $("#"+ID).css("visibility","visible");
         $("#colorImg").css("visibility","visible");
         $("#colseBtn").css("visibility","visible");
         $( "#effect" ).show(500);
@@ -134,43 +135,177 @@ $(document).ready(function(){
     $( "#addInput" ).sortable();
     $( "#addInput" ).disableSelection();
 } );
+console.log("Len:"+$("#addInput").children().length);
+var num = $("#addInput").children().length;
 
-$("#takeNote").keypress(function(){
-    var index = 0;
+console.log("Number:"+num);
+for(;i <= num;i++){
+  var divId = $("#addInput div:nth-child("+i+")").find("input").attr('id');
+  console.log("Dai:"+divId);
+ 
+  // function newFunction(event){
+  
+  // }
+  $("#"+divId).keyup(function(event){
+   
+           
+            //  $(this).unbind(event);
+    // console.log("HI KEY");
     
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if(keycode == '13'){
+    // var keycode = (event.keyCode ? event.keyCode : event.which);
+    // if(keycode == '13'){
+    //   // $("#"+divId).off('keypress');
+    //   i = i + 1;
+    //   console.log("HIIKEY");
+    //   console.log("II:"+i);
+    //   var newId = $("#addInput div:nth-child("+i+")").find("input").attr('id');
+    //   console.log("NEW:"+newId);
+    //   console.log("#"+newId);
+    //   $("#"+newId).focus();
+    //   divId = $("#addInput div:nth-child("+i+")").attr('id');
+    //   console.log("Dkey:"+divId);
+    //   // $("#"+divId).trigger(event);
+    //   //  return divId;
       
-    // if(e.which == 13) {
-      index = index + 1;
-      row1 = row1 + 1;
-      var itemTxt = $("#takeNote").val(); 
-      console.log("Item:"+itemTxt);
-  
-      var value = $("#takeNote").parents().html(); 
-  
-        $("#addInput").append(
+      
+      
+    // }
+    console.log("D2:"+divId);
+      // $("#"+divId).trigger(event);
+      console.log("HHHHkl");
+      console.log("D:"+divId);
+    // console.log("ROW:"+row1);
+    row1 = row1 + 1;
+    // console.log("ROW:"+row1);
+    console.log("NewI:"+i);
+    var newId = $("#addInput div:nth-child("+i+")").find("input").attr('id');
+    console.log("ROW:"+newId);
+    var value = $("#"+newId).val();
+    
+    console.log("#"+value);
+    console.log("Letter:"+value.length);
+
+    if(value.length == 1){
+    $("#addInput").append(
             "<div class=\"input-group mb-3\" id=\"ad"+row1+"\" value=\"ad"+row1+"\">\n" +
-            "                        <div class=\"input-group-prepend\">\n" +
-            "                            <div class=\"input-group-text\" id='oneInputGroup'>&nbsp;&nbsp;<i class=\"fas fa-grip-vertical\" id='sideIcon' style='visibility:hidden'></i>\n" +
-            "                                &nbsp;&nbsp;<input type=\"checkbox\" aria-label=\"Checkbox for following text input\" id=\"chekBoxID"+index+"\">\n" +
-            "                            </div>\n" +
-            "                        </div>\n" +
-            "                        <input value='"+itemTxt+"' type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"chekBoxTID"+index+"\"><i class='fas fa-times' id='cancelRow'></i>\n" +
+            "                        <i class='fas fa-plus' id='plusSign'></i><input type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"takeNote"+row1+"\"><i class='fas fa-times' id='cancelRow'></i>\n" +
             "                    </div>");
 
-        $("#takeNote").val("");
-        
-       console.log(row1);
-      //  $("#takeNote").remove();
+            console.log($("#addInput div:nth-child(2)").attr('id'));
+          }
+          console.log("----------------------------------------");
+          var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      // $("#"+divId).off('keypress');
+      // i = i + 1;
+      console.log("HIIKEY");
+      console.log("II:"+i);
+      var newId = $("#addInput div:nth-child("+i+")").find("input").attr('id');
+      console.log("NEW:"+newId);
+      console.log("#"+newId);
+      $("#"+newId).focus();
+      divId = $("#addInput div:nth-child("+i+")").find("input").attr('id');
+      console.log("MYNEWID:"+divId);
+          console.log("HHyy");
+          console.log("II:"+i);
+          console.log("----------------------------------------");
+          // return i;
+
     }
+  });
+  console.log("HHyy");
+  // i = i + 1;
+   console.log("IIg:"+i);
+
+   console.log("D:"+divId);
+
+  //  $("#"+divId).keypress(function(event){
+    // var keycode = (event.keyCode ? event.keyCode : event.which);
+    // if(keycode == '13'){
+    //   // $("#"+divId).off('keypress');
+    //   i = i + 1;
+    //   console.log("HIIKEY");
+    //   console.log("II:"+i);
+    //   var newId = $("#addInput div:nth-child("+i+")").find("input").attr('id');
+    //   console.log("NEW:"+newId);
+    //   console.log("#"+newId);
+    //   $("#"+newId).focus();
+    //   divId = $("#addInput div:nth-child("+i+")").find("input").attr('id');
+    //   console.log("Dkey:"+divId);
+      // $("#"+divId).trigger(event);
+
+        // return divId;
+      
+       
+      
+    // }
+    // console.log("Dkey:"+divId);
+    // console.log("gggggggg");
+    // return divId;
+    // event.preventDefault();
+    
+  //  });
+   console.log("KKKKK:"+divId);
+   $("#"+divId).keypress(function(event){
+
+     console.log("JJJJJ"+event.result);
+   });
+   console.log("hhhhhh");
+// console.log("D3:"+divId);
+  
+  // $("#"+divId).keydown(function(event) {
+  //    var keycode = (event.keyCode ? event.keyCode : event.which);
+  //   if(keycode == '13'){
+  //     console.log("HIIKEY");
+    // if(e.which == 13) {
+      // var index = i + 1;
+      // console.log("I"+i);
+      // console.log("In"+index);
+      // var divId = $("#addInput div:nth-child("+i+")").attr('id');
+  // console.log("D1:"+divId);
+      // var itemTxt = $("#takeNote").val(); 
+      // console.log("Item:"+itemTxt);
+  
+      // var value = $("#takeNote").parents().html(); 
+     
+        // $("#addInput").append(
+        //     "<div class=\"input-group mb-3\" id=\"ad"+row1+"\" value=\"ad"+row1+"\">\n" +
+        //     "                        <div class=\"input-group-prepend\">\n" +
+        //     "                            <div class=\"input-group-text\" id='oneInputGroup'>&nbsp;&nbsp;<i class=\"fas fa-grip-vertical\" id='sideIcon' style='visibility:hidden'></i>\n" +
+        //     "                                &nbsp;&nbsp;<input type=\"checkbox\" aria-label=\"Checkbox for following text input\" id=\"chekBoxID"+index+"\">\n" +
+        //     "                            </div>\n" +
+        //     "                        </div>\n" +
+        //     "                        <input value='"+itemTxt+"' type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"chekBoxTID"+index+"\"><i class='fas fa-times' id='cancelRow'></i>\n" +
+        //     "                    </div>");
+
+        // $("#takeNote").val("");
+        
+  //       i = i + 1;
+  //       console.log("II:"+i);
+  //     var newId = $("#addInput div:nth-child("+i+")").find("input").attr('id');
+  //     console.log("NEW:"+newId);
+  //     console.log("#"+newId);
+  //     $("#"+newId).focus();
+  //     divId = $("#addInput div:nth-child("+i+")").attr('id');
+  //     console.log("D3:"+divId);
+  //     // $("#"+divId).bind(event);
+  //     console.log("HHyy");
+
+  // console.log("D3:"+divId);
+  //   }
+  // });
+  
+
+  
+ }
+
 
 
 
     // }
 
 
-});
+
   
 $("#colorImg").tooltip();
 
@@ -247,11 +382,6 @@ $("#dot12").click(function(){
   $("#formStuc").css("background-color","#9370DB");
 });
 
-// $("body").click(function(){
-//   $( "#effect" ).hide(3);
-//     $("#takeNote").text("Take a Note....");
-//     $("#takeNote").css("color","#C9C2C2");
-// });
 
 $("#colseBtn").click('.grid-item',function(){
   $( "#effect" ).hide(3);
@@ -272,12 +402,12 @@ $("#colseBtn").click('.grid-item',function(){
 $grid.packery( 'bindUIDraggableEvents', $items );  
 });
 
-var newId = $("#addInput").children("div").attr('id');
-console.log("NewID:"+newId);
-$(document).hover("#"+newId,function(){
+// var newId = $("#addInput").children("div").attr('id');
+// console.log("NewID:"+newId);
+// $(document).hover("#"+newId,function(){
 
-  $("#sideIcon").css("visibility","visible");
-});
+//   $("#sideIcon").css("visibility","visible");
+// });
 
 $(document).on('click','#cancelRow',function(){
     var ID = $(this).parent().attr('id');

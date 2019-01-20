@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="container">
+      
+            <form class="create-note">
+              <div class="form-group" id="effect" contenteditable="true">
+              <input type="text" name="title" placeholder="Title" id="txtTitle">
+            </div>
+            <div class="form-group" id="effect" contenteditable="true">
+                <div class="form-group" id="addInput" name="takeNote" contenteditable="true"></div>
+             
+            </div>
+           
+            <i class="fas fa-palette" id="colorImg" title="Change Color">
+              <div id="selectColor" style="background-color:#E6E6FA">
+                <div style="text-align:center">
+                  <span class="dot" style="background-color:white" id="dot1"></span>
+                  <span class="dot" style="background-color: #FFEFD5" id="dot2"></span>
+                  <span class="dot" style="background-color: #BDB76B" id="dot3"></span>
+                  <span class="dot" style="background-color: #9ACD32" id="dot4"></span>
+                </div>
+    
+                <div style="text-align:center">
+                  <span class="dot" style="background-color: #3CB371" id="dot5"></span>
+                  <span class="dot" style="background-color: #98FB98" id="dot6"></span>
+                  <span class="dot" style="background-color: #90EE90" id="dot7"></span>
+                  <span class="dot" style="background-color: #8FBC8F" id="dot8"></span>
+                </div>
+    
+                <div style="text-align:center">
+                  <span class="dot" style="background-color: #AFEEEE" id="dot9"></span>
+                  <span class="dot" style="background-color: #5F9EA0" id="dot10"></span>
+                  <span class="dot" style="background-color: #D8BFD8" id="dot11"></span>
+                  <span class="dot" style="background-color: #9370DB" id="dot12"></span>
+                </div>
+              </div></i>
+           
+          <button type="button" class="btn btn-default" id="colseBtn">Close</button>
+        
+        </form>
+        
+      </div>    
+
+<div class="grid"></div>
+
+    <script src="js/jquery/jquery.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="https://unpkg.com/packery@2/dist/packery.pkgd.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+var row1 = 0;
+$(document).ready(function(){
+
+  //-----------Start of hide color picker and title tag until click the list item tag-------
+    $( "#effect" ).hide(3);
+    $( "#selectColor" ).hide(3);
+    $("#colorImg").hide(3);
+    $("#colseBtn").hide(3);
+  //-----------End of hide color picker and title tag until click the list item tag-------
+
+
+  //----------start of adgesting appended inputs and icons-------------  
+  $("#addInput").find("input").css("border","none");
+  $("#addInput").find("i").css(" margin-left","10px");
+  $("#addInput").find("i").css("font-size","15px");
+  $("#addInput").find("i").css("height","15px");
+  $("#addInput").find("i").css("vertical-align","middle");
+  //----------End of adgesting appended inputs and icons-------------  
+
+  //----------start of changing colors of inputs and icons------------- 
+  $("#addInput").find("i").css("color","gray");
+  $("#addInput").find("i").first().css("color","black");
+  $("#addInput").find("i").last().css("color","black");
+  $("#addInput").find("i").first().css("visibility","hidden");
+  $("#addInput").find("i").last().css("visibility","hidden");
+  //----------End of changing colors of inputs and icons------------- 
+   
+});
+
+function getItemElement() {
+  var $item = $('<div class="grid-item"></div>');
+  // add width and height class
+  var wRand = Math.random();
+  var hRand = Math.random();
+  var widthClass = wRand > 0.85 ? 'grid-item--width3' : wRand > 0.7 ? 'grid-item--width2' : '';
+  var heightClass = hRand > 0.85 ? 'grid-item--height3' : hRand > 0.5 ? 'grid-item--height2' : '';
+  $item.addClass( widthClass ).addClass( heightClass );
+  return $item;
+}
+
+//--------------Start of Errors-------------
+
+// for(var k=1;k <= $("#addInput").find("div").length;k++){
+
+//   var nId = $("#addInput div:nth-child("+k+")").attr('id');
+//   console.log("N:"+nId);
+
+//   $("#"+nId).hover(function(){
+//     $("#addInput div:nth-child("+k+")").find("i").first().css("visibility","visible");
+//   $("#addInput div:nth-child("+k+")").find("i").last().css("visibility","visible");
+
+//   });
+// }
+
+// $(function(event){
+//   $("#addInput div").mouseenter(event.currentTarget,function(){
+//     $("#addInput").find("i").first().show();
+//     $("#addInput").last("i").first().show();
+//   });
+
+//   $("#addInput div").mouseleave(event.currentTarget,function(){
+//     $("#addInput").find("i").first().show();
+//     $("#addInput").last("i").first().show();
+//   });
+// });
+
+//--------------End of Errors-------------
+
+ var $grid = $('.grid').packery({
+  itemSelector: '.grid-item',
+  // columnWidth helps with drop positioning
+  columnWidth: 100
+});
+
+//-------- make all items draggable----------
+var $items = $grid.find('.grid-item').draggable();
+//---------- bind drag events to Packery----------
+$grid.packery( 'bindUIDraggableEvents', $items );
+
+//-----------Start of adding one input to the html------------
+if($("#addInput").children().length == 0){
+      row1 = row1 + 1;
+      $("#addInput").append(
+            "<div class=\"input-group mb-3\" id=\"ad"+row1+"\" value=\"ad"+row1+"\"><i class=\"fas fa-grip-vertical\" id='sideIcon' ></i>&nbsp;&nbsp;\n" +
+            "                        <i class='fas fa-plus' id='plusSign'>&nbsp;&nbsp;</i><input type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"takeNote"+row1+"\" style='box-shadow: inset 0px 0px 0px 0px' placeholder='List Item'>&nbsp;&nbsp;<i class='fas fa-times' id='cancelRow'></i>\n" +
+            "                    </div>");
+    }
+//-----------End of adding one input to the html------------
+
+//get id of the added input
+var ID = $("#addInput").children().first().attr('id');
+console.log(ID);
+
+  //click list item.
+    $("#"+ID).click(function(){
+      $("#"+ID).css("color","black");
+        $("#txtTitle").css("visibility","visible");
+        $("#"+ID).css("visibility","visible");
+        $("#colorImg").css("visibility","visible");
+        $("#colseBtn").css("visibility","visible");
+        $( "#effect" ).show(500);
+        $("#colorImg").show(20);
+        $("#colseBtn").show(20);
+        // $("#addInput").find("i:nth-child(2)").css("visibility","visible");
+       
+        
+    });
+
+//show color picker
+    $("#colorImg").hover(function(){
+      $( "#selectColor" ).show(3);
+    });
+
+    //add popup massage to color picker
+    $("#colorImg").tooltip();
+    
+    
+//-----------start of change color-----------------
+    $("#dot1").click(function(){
+  $(".create-note").css("background","white");
+  $("#addInput").find("input").css("background","white");
+   $("#colseBtn").css("background-color","white");
+   $("#txtTitle").css("background-color","white");
+});
+$("#dot2").click(function(){
+  $(".create-note").css("background","#FFEFD5");
+  $("#addInput").find("input").css("background","#FFEFD5");
+   $("#colseBtn").css("background-color","#FFEFD5");
+   $("#txtTitle").css("background-color","#FFEFD5");
+});
+$("#dot3").click(function(){
+  $(".create-note").css("background-color","#BDB76B");
+  $("#txtTitle").css("background-color","#BDB76B");
+  $("#colseBtn").css("background-color","#BDB76B");
+  $("#addInput").find("input").css("background","#BDB76B");
+  // $("#formStuc").css("background-color","#BDB76B");
+});
+$("#dot4").click(function(){
+  $(".create-note").css("background-color","#9ACD32");
+  $("#txtTitle").css("background-color","#9ACD32");
+  $("#colseBtn").css("background-color","#9ACD32");
+  $("#addInput").find("input").css("background","#9ACD32");
+});
+$("#dot5").click(function(){
+  $(".create-note").css("background-color","#3CB371");
+  $("#txtTitle").css("background-color","#3CB371");
+  $("#colseBtn").css("background-color","#3CB371");
+  $("#addInput").find("input").css("background","#3CB371");
+});
+$("#dot6").click(function(){
+  $(".create-note").css("background-color","#98FB98");
+  $("#txtTitle").css("background-color","#98FB98");
+  $("#colseBtn").css("background-color","#98FB98");
+  $("#addInput").find("input").css("background","#98FB98");
+});
+$("#dot7").click(function(){
+  $(".create-note").css("background-color","#90EE90");
+  $("#txtTitle").css("background-color","#90EE90");
+  $("#colseBtn").css("background-color","#90EE90");
+  $("#addInput").find("input").css("background","#90EE90");
+});
+$("#dot8").click(function(){
+  $(".create-note").css("background-color","#8FBC8F");
+  $("#txtTitle").css("background-color","#8FBC8F");
+  $("#colseBtn").css("background-color","#8FBC8F");
+  $("#addInput").find("input").css("background","#8FBC8F");
+});
+$("#dot9").click(function(){
+  $(".create-note").css("background-color","#AFEEEE");
+  $("#txtTitle").css("background-color","#AFEEEE");
+  $("#colseBtn").css("background-color","#AFEEEE");
+  $("#addInput").find("input").css("background","#AFEEEE");
+});
+$("#dot10").click(function(){
+  $(".create-note").css("background-color","#5F9EA0");
+  $("#txtTitle").css("background-color","#5F9EA0");
+  $("#colseBtn").css("background-color","#5F9EA0");
+  $("#addInput").find("input").css("background","#5F9EA0");
+});
+$("#dot11").click(function(){
+  $(".create-note").css("background-color","#D8BFD8");
+  $("#txtTitle").css("background-color","#D8BFD8");
+  $("#colseBtn").css("background-color","#D8BFD8");
+  $("#addInput").find("input").css("background","#D8BFD8");
+});
+$("#dot12").click(function(){
+  $(".create-note").css("background-color","#9370DB");
+  $("#txtTitle").css("background-color","#9370DB");
+  $("#colseBtn").css("background-color","#9370DB");
+  $("#addInput").find("input").css("background","#9370DB");
+});
+//-----------End of change color-----------------
+       
+//--------Start of sort Items----------
+    $( function() {
+    $( "#addInput" ).sortable();
+    $( "#addInput" ).disableSelection();
+} );
+//--------End of sort Items----------
+
+
+//-------Start of click close button------------
+$("#colseBtn").click('.grid-item',function(){
+ 
+//get value of the title 
+
+  var t = $("#txtTitle").val();
+  var $items = getItemElement().add();
+  var ti = $("#txtTitle").val();
+
+//append all the checkboxes into grid
+  for(var j=1;j <= $("#addInput").find("div").length;j++){
+
+      var id = $("#addInput div:nth-child("+j+")").find("input").attr('id');
+      var res = $("#"+id).val();
+      console.log(res);
+    
+    //------get background color code of the input box
+      var col = $(this).css('background-color');
+      console.log(col);
+   
+//add details into grid
+      $items.append("<div><h1 style='font-size: 25px'>"+ti+"</h1><div><div><p>"+res+"</p><p><i class='fas fa-ellipsis-v' style='position:absolute;bottom:7px;right:10px' id='deleteItem'></i></p></div>");
+
+}
+        
+console.log($("#addInput").find("input").val());
+// append elements to container
+
+  if($("#addInput").find("div").length >= 1 && $("#addInput").find("input").val() != ""){
+
+  //change color of the grid base on input box color
+
+    $items.css("background",""+col+"");
+
+  //----Start appending items---
+    $grid.append( $items )
+  // add and lay out newly appended elements
+    .packery( 'appended', $items );
+  //----End appending items---
+
+  //-----Start draggable---
+    var $items = $grid.find('.grid-item').draggable();
+  // bind drag events to Packery
+    $grid.packery( 'bindUIDraggableEvents', $items );
+  //-----End draggable---
+}
+
+//find selected grid item's icon's id
+var newId = $grid.find('.grid-item').find('i').attr('id');
+nid = "#"+newId;
+console.log("NEW:"+nid);
+
+//remove grid when icon click
+$("#"+newId).click(function(){
+  
+$grid.on( 'click', '.grid-item', function( event ) {
+  // remove clicked element
+  $grid.packery( 'remove', event.currentTarget )
+    // shiftLayout remaining item elements
+    .packery('shiftLayout');
+});
+});
+//-------End of click close button------------
+
+
+//---clear input value---
+$("#txtTitle").val("");
+$("#takeNote1").val("");
+
+//---Change box color into white---
+$(".create-note").css("background","white");
+  $("#addInput").find("input").css("background","white");
+   $("#colseBtn").css("background-color","white");
+   $("#txtTitle").css("background-color","white");
+
+//-----hide title and color picker and close button-------
+$( "#effect" ).hide(3);
+$("#colorImg").hide(3);
+$("#colseBtn").hide(3);
+
+});
+
+//click cross sign to cancel list item
+$(document).on('click','#cancelRow',function(){
+    var ID = $(this).parent().attr('id');
+   console.log("HIII");
+  console.log(ID);
+  $("#"+ID).remove();
+
+});
+
+//add list item when keypress
+var id = $("#addInput").find("input").attr('id');
+console.log("MYID:"+id);
+
+//-------Start of Errors-----------
+
+//add checkboxes when type first letter
+$("#"+id).keyup(function(event){
+
+if($("#"+id).val().length == 1){
+  row1 = row1 + 1;
+  // $("#addInput").append("<div class=\"row\" id=\"mainDiv"+row1+"\">\n" +
+  // "   <div class=\"col-md-1\">\n" +
+  // "     <i class=\"fas fa-grip-vertical cheakBox1\" id='cheackIcon'></i>\n" +
+  // "   </div>\n" +
+  // "   <div class=\"col-md-10\">\n" +
+  // "       <div class=\"form-check\" id='listAll'>\n" +
+  // "           <input class=\"form-check-input cheakBox1\" type=\"checkbox\" value=\"\" id=\"cheackBoxVal"+row1+"\">\n" +
+  // "           <input type=\"text\" class=\"form-control\" id=\"takeNote"+row1+"\" placeholder=\"&nbsp;&nbsp;&nbsp;List Item\" style='box-shadow: inset 0px 0px 0px 0px'>\n" +
+  // "       </div>\n" +
+  // "   </div>\n" +
+  // "   <i class=\"fas fa-times cheakBox1\" id=\"cancelRow\"></i>\n" +
+  // "</div>");    
+  // $("#addInput").find("input").css("border","none");
+  // $("#takeNote1").css("border-top","1px solid gray");
+  // $("#addInput").find("input").css("border-bottom","1px solid gray");
+}
+    // $("#textVal" + row1).focus();
+
+    //-----focus into next checkbox when click enter
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+      console.log("H");
+      console.log("R:"+row1);
+      console.log("#takeNote"+row1);
+      $("#takeNote"+row1).focus();
+     
+    }
+});
+
+//-------End of Errors-----------
+
+$("body").click(function(){
+
+ var bId = $("body").find("input").attr('id');
+ console.log("IDF:"+bId);
+
+  //  if(bId != container)
+});
+</script>
+</body>
+</html>
