@@ -17,6 +17,7 @@
     <div class="container">
       
             <form class="create-note">
+             
               <div class="form-group" id="effect" contenteditable="true">
               <input type="text" name="title" placeholder="Title" id="txtTitle">
             </div>
@@ -24,7 +25,7 @@
                 <div class="form-group" id="addInput" name="takeNote" contenteditable="true"></div>
              
             </div>
-           
+          
             <i class="fas fa-palette" id="colorImg" title="Change Color">
               <div id="selectColor" style="background-color:#E6E6FA">
                 <div style="text-align:center">
@@ -50,13 +51,13 @@
               </div></i>
            
           <button type="button" class="btn btn-default" id="colseBtn">Close</button>
-        
+       
         </form>
         
       </div>    
 
 <div class="grid"></div>
-
+<div id="divpopup">h</div>
     <script src="js/jquery/jquery.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="https://unpkg.com/packery@2/dist/packery.pkgd.min.js"></script>
@@ -73,9 +74,14 @@ $(document).ready(function(){
     $("#colseBtn").hide(3);
   //-----------End of hide color picker and title tag until click the list item tag-------
 
+  addCss();
+  
+   
+});
 
-  //----------start of adgesting appended inputs and icons-------------  
-  $("#addInput").find("input").css("border","none");
+function addCss(){
+//----------start of adgesting appended inputs and icons-------------  
+$("#addInput").find("input").css("border","none");
   $("#addInput").find("i").css(" margin-left","10px");
   $("#addInput").find("i").css("font-size","15px");
   $("#addInput").find("i").css("height","15px");
@@ -83,15 +89,13 @@ $(document).ready(function(){
   //----------End of adgesting appended inputs and icons-------------  
 
   //----------start of changing colors of inputs and icons------------- 
-  $("#addInput").find("i").css("color","gray");
+  $("#addInput").find("i:nth-child(2)").css("color","gray");
   $("#addInput").find("i").first().css("color","black");
   $("#addInput").find("i").last().css("color","black");
-  $("#addInput").find("i").first().css("visibility","hidden");
+  // $("#addInput").find("i").first().css("visibility","hidden");
   $("#addInput").find("i").last().css("visibility","hidden");
   //----------End of changing colors of inputs and icons------------- 
-   
-});
-
+}
 function getItemElement() {
   var $item = $('<div class="grid-item"></div>');
   // add width and height class
@@ -166,6 +170,7 @@ console.log(ID);
         $( "#effect" ).show(500);
         $("#colorImg").show(20);
         $("#colseBtn").show(20);
+        $("#sideIcon").css("visibility","visible");
         // $("#addInput").find("i:nth-child(2)").css("visibility","visible");
        
         
@@ -285,8 +290,8 @@ $("#colseBtn").click('.grid-item',function(){
       console.log(col);
    
 //add details into grid
-      $items.append("<div><h1 style='font-size: 25px'>"+ti+"</h1><div><div><p>"+res+"</p><p><i class='fas fa-ellipsis-v' style='position:absolute;bottom:7px;right:10px' id='deleteItem'></i></p></div>");
-
+      $items.append("<div><h1 style='font-size: 25px'>"+ti+"</h1><div><p>"+res+"</p><p><i class='fas fa-trash' style='position:absolute;bottom:7px;right:10px' id='deleteItem'></i></p></div>");
+      $items.css("border-radius","10px");
 }
         
 console.log($("#addInput").find("input").val());
@@ -315,16 +320,22 @@ console.log($("#addInput").find("input").val());
 var newId = $grid.find('.grid-item').find('i').attr('id');
 nid = "#"+newId;
 console.log("NEW:"+nid);
-
+$("#"+newId).css("font-size","18px");
 //remove grid when icon click
-$("#"+newId).click(function(){
+// $("#"+newId).click(function(){
+//   console.log("REMOVE");
+$("#"+newId).click(function(event){
+  console.log("click");
   
 $grid.on( 'click', '.grid-item', function( event ) {
+  console.log("REMOVE");
   // remove clicked element
   $grid.packery( 'remove', event.currentTarget )
     // shiftLayout remaining item elements
     .packery('shiftLayout');
+  // });
 });
+
 });
 //-------End of click close button------------
 
@@ -344,6 +355,12 @@ $( "#effect" ).hide(3);
 $("#colorImg").hide(3);
 $("#colseBtn").hide(3);
 
+for(var j=2;j <= $("#addInput").find("div").length;j++){
+
+    var id = $("#addInput div:nth-child("+j+")").find("input").attr('id');
+    $("#"+id).val("");
+    $("#addInput div:nth-child("+j+")").remove();
+}
 });
 
 //click cross sign to cancel list item
@@ -363,26 +380,22 @@ console.log("MYID:"+id);
 
 //add checkboxes when type first letter
 $("#"+id).keyup(function(event){
+  $("#cancelRow").css("visibility","visible");
+
 
 if($("#"+id).val().length == 1){
   row1 = row1 + 1;
-  // $("#addInput").append("<div class=\"row\" id=\"mainDiv"+row1+"\">\n" +
-  // "   <div class=\"col-md-1\">\n" +
-  // "     <i class=\"fas fa-grip-vertical cheakBox1\" id='cheackIcon'></i>\n" +
-  // "   </div>\n" +
-  // "   <div class=\"col-md-10\">\n" +
-  // "       <div class=\"form-check\" id='listAll'>\n" +
-  // "           <input class=\"form-check-input cheakBox1\" type=\"checkbox\" value=\"\" id=\"cheackBoxVal"+row1+"\">\n" +
-  // "           <input type=\"text\" class=\"form-control\" id=\"takeNote"+row1+"\" placeholder=\"&nbsp;&nbsp;&nbsp;List Item\" style='box-shadow: inset 0px 0px 0px 0px'>\n" +
-  // "       </div>\n" +
-  // "   </div>\n" +
-  // "   <i class=\"fas fa-times cheakBox1\" id=\"cancelRow\"></i>\n" +
-  // "</div>");    
-  // $("#addInput").find("input").css("border","none");
-  // $("#takeNote1").css("border-top","1px solid gray");
-  // $("#addInput").find("input").css("border-bottom","1px solid gray");
+  
+  $("#addInput").append(
+            "<div class=\"input-group mb-3\" id=\"ad"+row1+"\" value=\"ad"+row1+"\"><i class=\"fas fa-grip-vertical\" id='sideIcon' ></i>&nbsp;&nbsp;\n" +
+            "                        <i class='fas fa-plus' id='plusSign'>&nbsp;&nbsp;</i><input type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"takeNote"+row1+"\" style='box-shadow: inset 0px 0px 0px 0px' placeholder='List Item'>&nbsp;&nbsp;<i class='fas fa-times' id='cancelRow'></i>\n" +
+            "                    </div>");
+
+    var col = $("#colseBtn").css('background-color');
+    $("#takeNote"+row1).css("background",col);
+ addCss();
 }
-    // $("#textVal" + row1).focus();
+    
 
     //-----focus into next checkbox when click enter
     var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -391,19 +404,51 @@ if($("#"+id).val().length == 1){
       console.log("R:"+row1);
       console.log("#takeNote"+row1);
       $("#takeNote"+row1).focus();
+      
      
     }
 });
 
 //-------End of Errors-----------
 
-$("body").click(function(){
+// $("body").click(function(){
 
- var bId = $("body").find("input").attr('id');
- console.log("IDF:"+bId);
+//  var bId = $("body").attr('id');
+//  console.log("IDF:"+bId);
 
-  //  if(bId != container)
+//   //  if(bId != container)
+// });
+
+$grid.on( 'dblclick', '.grid-item', function( event ) {
+  console.log("targetPack");
+  console.log(event.currentTarget);
+ 
+  //  var d = $(".grid-item").attr('data-rel');
+  //   d = "popup";
+  //  console.log(d);
+  var wd = $(this).css("width");
+  var ht = $(this).css("height"); 
+  console.log(wd+" " + ht);
+
+   $("#divpopup").dialog({
+                         width: 400,
+                         height:400,  
+                         dialogClass:'dialog-box',
+                        modal: true,
+                        buttons: {
+                            Close:
+                            function() {
+                                $(this).dialog('close');
+                            }
+                        }
+                    });
+    var gridColor = $(this).css('background-color');
+    console.log(gridColor);
+    $(".dialog-box").css("background-color",gridColor);
+    $(".dialog-box").append(event.currentTarget);
+
 });
+
 </script>
 </body>
 </html>
