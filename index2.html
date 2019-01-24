@@ -21,7 +21,9 @@
               <div class="form-group" id="effect" contenteditable="true">
               <input type="text" name="title" placeholder="Title" id="txtTitle">
             </div>
+            
             <div class="form-group" id="effect" contenteditable="true">
+                <div class="form-group" id="newChekBox"></div>
                 <div class="form-group" id="addInput" name="takeNote" contenteditable="true"></div>
              
             </div>
@@ -57,7 +59,7 @@
       </div>    
 
 <div class="grid"></div>
-<div id="divpopup">h</div>
+<div id="divpopup"></div>
     <script src="js/jquery/jquery.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="https://unpkg.com/packery@2/dist/packery.pkgd.min.js"></script>
@@ -263,8 +265,8 @@ $("#dot12").click(function(){
        
 //--------Start of sort Items----------
     $( function() {
-    $( "#addInput" ).sortable();
-    $( "#addInput" ).disableSelection();
+    $( "#newChekBox" ).sortable();
+    $( "#newChekBox" ).disableSelection();
 } );
 //--------End of sort Items----------
 
@@ -277,27 +279,30 @@ $("#colseBtn").click('.grid-item',function(){
   var t = $("#txtTitle").val();
   var $items = getItemElement().add();
   var ti = $("#txtTitle").val();
-
+  $items.append("<div><h1 style='font-size: 25px'>"+ti+"</h1></div>");
 //append all the checkboxes into grid
-  for(var j=1;j <= $("#addInput").find("div").length;j++){
+  for(var j=1;j <= $("#newChekBox").find("div").length;j++){
 
-      var id = $("#addInput div:nth-child("+j+")").find("input").attr('id');
+      var id = $("#newChekBox div:nth-child("+j+")").find("input").attr('id');
       var res = $("#"+id).val();
-      console.log(res);
+      console.log("idddd:"+res);
     
     //------get background color code of the input box
       var col = $(this).css('background-color');
       console.log(col);
    
 //add details into grid
-      $items.append("<div><h1 style='font-size: 25px'>"+ti+"</h1><div><p>"+res+"</p><p><i class='fas fa-trash' style='position:absolute;bottom:7px;right:10px' id='deleteItem'></i></p></div>");
+      $items.append("<div><div>&nbsp;&nbsp;&nbsp;&nbsp;<input type='checkbox' id=\"cheack"+j+"\">&nbsp;&nbsp;&nbsp;"+res+"</div><p><i class='fas fa-trash' style='position:absolute;bottom:7px;right:10px' id='deleteItem'></i></p></div>");
       $items.css("border-radius","10px");
+    
+      
+      //  $("#cheack"+j).css("text-size-adjust","80%");
 }
         
 console.log($("#addInput").find("input").val());
 // append elements to container
 
-  if($("#addInput").find("div").length >= 1 && $("#addInput").find("input").val() != ""){
+  if($("#newChekBox").find("div").length >= 1){
 
   //change color of the grid base on input box color
 
@@ -343,7 +348,12 @@ $grid.on( 'click', '.grid-item', function( event ) {
 //---clear input value---
 $("#txtTitle").val("");
 $("#takeNote1").val("");
-
+for(var r = 1;r <= $("#newChekBox").find("div").length;r++){
+    console.log("r:"+"#ad"+r);
+      $("#ad"+r).remove();
+      // $("#plusSign").remove();
+      // $("#cancelRow").remove();
+}
 //---Change box color into white---
 $(".create-note").css("background","white");
   $("#addInput").find("input").css("background","white");
@@ -355,7 +365,7 @@ $( "#effect" ).hide(3);
 $("#colorImg").hide(3);
 $("#colseBtn").hide(3);
 
-for(var j=2;j <= $("#addInput").find("div").length;j++){
+for(var j=2;j <= $("#addInput").find("div").length;){
 
     var id = $("#addInput div:nth-child("+j+")").find("input").attr('id');
     $("#"+id).val("");
@@ -374,39 +384,49 @@ $(document).on('click','#cancelRow',function(){
 
 //add list item when keypress
 var id = $("#addInput").find("input").attr('id');
-console.log("MYID:"+id);
+// console.log("MYID:"+id);
 
 //-------Start of Errors-----------
-
+// var id = null;
+// for(var j=1;j <= $("#addInput").find("div").length;j++){
+  // id = $("#addInput div:nth-child("+j+")").find("input").attr('id');
+// }
+console.log("MYID:"+id);
 //add checkboxes when type first letter
-$("#"+id).keyup(function(event){
+$("#takeNote1").keyup(function(event){
   $("#cancelRow").css("visibility","visible");
 
-
-if($("#"+id).val().length == 1){
-  row1 = row1 + 1;
+$("#plusSign").css("visibility","hidden");
+console.log("ID:"+$(this).attr('id'));
+  var nID = $(this).attr('id');
   
-  $("#addInput").append(
+if($("#takeNote1").val().length == 1){
+  row1 = row1 + 1;
+  // console.log("TXT:"+ty);
+  $("#newChekBox").append(
             "<div class=\"input-group mb-3\" id=\"ad"+row1+"\" value=\"ad"+row1+"\"><i class=\"fas fa-grip-vertical\" id='sideIcon' ></i>&nbsp;&nbsp;\n" +
-            "                        <i class='fas fa-plus' id='plusSign'>&nbsp;&nbsp;</i><input type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"takeNote"+row1+"\" style='box-shadow: inset 0px 0px 0px 0px' placeholder='List Item'>&nbsp;&nbsp;<i class='fas fa-times' id='cancelRow'></i>\n" +
+            "                        <i class='fas fa-plus' id='plusSign'></i>&nbsp;&nbsp;<input type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\" id=\"takeNote"+row1+"\" style='box-shadow: inset 0px 0px 0px 0px' placeholder='List Item'>&nbsp;&nbsp;<i class='fas fa-times' id='cancelRow'></i>\n" +
             "                    </div>");
-
+    $("#takeNote"+row1).focus();
+    $("#takeNote1").val("");
     var col = $("#colseBtn").css('background-color');
     $("#takeNote"+row1).css("background",col);
  addCss();
 }
-    
+    console.log("RRR:"+row1);
 
     //-----focus into next checkbox when click enter
+    $("#takeNote"+row1).keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
       console.log("H");
       console.log("R:"+row1);
       console.log("#takeNote"+row1);
-      $("#takeNote"+row1).focus();
+      $("#takeNote1").focus();
       
      
     }
+});
 });
 
 //-------End of Errors-----------
